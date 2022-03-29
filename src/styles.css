@@ -1,3 +1,58 @@
+svg.cube .block > *{
+  fill:black;
+  animation: anim-cube-grid 1.5s ease-in-out infinite;
+}
+svg.cube .block-1{
+  transform-origin:16px 16px;
+  animation-delay: -0.2s;
+}
+svg.cube .block-2{
+  transform-origin:48px 16px;
+  animation-delay: -0.1s;
+}
+svg.cube .block-3{
+  transform-origin:80px 16px;
+  animation-delay: -0.0s;
+}
+svg.cube .block-4{
+  transform-origin:16px 48px;
+  animation-delay: -0.3s;
+}
+svg.cube .block-5{
+  transform-origin:48px 48px;
+  animation-delay: -0.2s;
+}
+svg.cube .block-6{
+  transform-origin:80px 48px;
+  animation-delay: -0.1s;
+}
+svg.cube .block-7{
+  transform-origin:16px 80px;
+  animation-delay: -0.4s;
+}
+svg.cube .block-8{
+  transform-origin:48px 80px;
+  animation-delay: -0.3s;
+}
+svg.cube .block-9{
+  transform-origin:80px 80px;
+  animation-delay: -0.2s;
+}
+
+@keyframes anim-cube-grid{
+  0%   {transform:scale(1.0);}
+  25%  {transform:scale(0.0);}
+  50%  {transform:scale(1.0);}
+  100% {transform:scale(1.0);}
+}
+
+
+
+svg path,
+svg rect{
+  fill: black;
+}
+
 .animated {
   -webkit-animation-duration: 100ms;
   animation-duration: 100ms;

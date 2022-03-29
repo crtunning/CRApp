@@ -1,5 +1,109 @@
 <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
-  <div class="au-xs-ta-center au-lg-ta-left">
+  <div *ngIf="this.productService.isLoading" align="center">
+    <svg class="cube" width="64px" height="64px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        svg.cube .block > *{
+          fill:black;
+          animation: anim-cube-grid 1.5s ease-in-out infinite;
+        }
+        svg.cube .block-1{
+          transform-origin:16px 16px;
+          animation-delay: -0.2s;
+        }
+        svg.cube .block-2{
+          transform-origin:48px 16px;
+          animation-delay: -0.1s;
+        }
+        svg.cube .block-3{
+          transform-origin:80px 16px;
+          animation-delay: -0.0s;
+        }
+        svg.cube .block-4{
+          transform-origin:16px 48px;
+          animation-delay: -0.3s;
+        }
+        svg.cube .block-5{
+          transform-origin:48px 48px;
+          animation-delay: -0.2s;
+        }
+        svg.cube .block-6{
+          transform-origin:80px 48px;
+          animation-delay: -0.1s;
+        }
+        svg.cube .block-7{
+          transform-origin:16px 80px;
+          animation-delay: -0.4s;
+        }
+        svg.cube .block-8{
+          transform-origin:48px 80px;
+          animation-delay: -0.3s;
+        }
+        svg.cube .block-9{
+          transform-origin:80px 80px;
+          animation-delay: -0.2s;
+        }
+    
+        @keyframes anim-cube-grid{
+          0%   {transform:scale(1.0);}
+          25%  {transform:scale(0.0);}
+          50%  {transform:scale(1.0);}
+          100% {transform:scale(1.0);}
+        }
+      </style>
+      <g class="block">
+        <rect class="block-1" x=" 0" y=" 0" width="33" height="33"></rect>
+        <rect class="block-2" x="32" y=" 0" width="33" height="33"></rect>
+        <rect class="block-3" x="64" y=" 0" width="33" height="33"></rect>
+        <rect class="block-4" x=" 0" y="32" width="33" height="33"></rect>
+        <rect class="block-5" x="32" y="32" width="33" height="33"></rect>
+        <rect class="block-6" x="64" y="32" width="33" height="33"></rect>
+        <rect class="block-7" x=" 0" y="64" width="33" height="33"></rect>
+        <rect class="block-8" x="32" y="64" width="33" height="33"></rect>
+        <rect class="block-9" x="64" y="64" width="33" height="33"></rect>
+      </g>
+    </svg>
+    <!--h2>Cargando...</h2>
+    <div *ngIf="this.productService.isLoad" class="loader loader--style1" title="0">
+      <svg
+        version="1.1"
+        id="loader-1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        width="40px"
+        height="40px"
+        viewBox="0 0 40 40"
+        enable-background="new 0 0 40 40"
+        xml:space="preserve"
+      >
+        <path
+          opacity="0.2"
+          fill="#000"
+          d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+      s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+      c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
+        />
+        <path
+          fill="#000"
+          d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+      C22.32,8.481,24.301,9.057,26.013,10.047z"
+        >
+          <animateTransform
+            attributeType="xml"
+            attributeName="transform"
+            type="rotate"
+            from="0 20 20"
+            to="360 20 20"
+            dur="0.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+    </div>
+    <p>Espere por favor</p-->
+  </div>
+  <div *ngIf="!this.productService.isLoading" class="au-xs-ta-center au-lg-ta-left">
     <ul class="rk-menu rk-categories-menu">
       <li class="rk-menu__item">
         <a href="portfolio.html" class="rk-menu__link">Flex</a>
@@ -16,13 +120,18 @@
     </ul>
   </div>
   <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
-    <a routerLink="item" class="rk-item ae-masonry__item"
-      ><img src="assets/img/project-1.jpg" alt="" />
+    <a
+      *ngFor="let product of productService.items"
+      routerLink="item"
+      class="rk-item ae-masonry__item"
+    >
+      <img src="assets/products/{{ product.url }}" alt="" />
       <div class="item-meta">
-        <h2>Essential Stationery</h2>
-        <p>Branding</p>
-      </div></a
-    ><a routerLink="item" class="rk-item ae-masonry__item"
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.category }}</p>
+      </div>
+    </a>
+    <!--a routerLink="item" class="rk-item ae-masonry__item"
       ><img src="assets/img/project-2.jpg" alt="" />
       <div class="item-meta">
         <h2>Pickled Tousled</h2>
@@ -94,6 +203,6 @@
         <h2>Venmo trust</h2>
         <p>Ui/UX</p>
       </div></a
-    >
+    -->
   </div>
 </section>
