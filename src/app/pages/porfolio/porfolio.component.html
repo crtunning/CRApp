@@ -1,5 +1,5 @@
 <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
-  <div *ngIf="this.productService.isLoading" align="center">
+  <!--div *ngIf="this.productService.isLoading" align="center">
     <svg class="cube" width="64px" height="64px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
       <style>
         svg.cube .block > *{
@@ -61,9 +61,8 @@
         <rect class="block-8" x="32" y="64" width="33" height="33"></rect>
         <rect class="block-9" x="64" y="64" width="33" height="33"></rect>
       </g>
-    </svg>
-    <!--h2>Cargando...</h2>
-    <div *ngIf="this.productService.isLoad" class="loader loader--style1" title="0">
+    </svg-->
+    <div *ngIf="this.productService.isLoading" class="loader loader--style1" title="0">
       <svg
         version="1.1"
         id="loader-1"
@@ -101,8 +100,6 @@
         </path>
       </svg>
     </div>
-    <p>Espere por favor</p-->
-  </div>
   <div *ngIf="!this.productService.isLoading" class="au-xs-ta-center au-lg-ta-left">
     <ul class="rk-menu rk-categories-menu">
       <li class="rk-menu__item">
@@ -122,7 +119,7 @@
   <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
     <a
       *ngFor="let product of productService.items"
-      routerLink="item"
+      [routerLink]="['/item',product.code]"
       class="rk-item ae-masonry__item"
     >
       <img src="assets/products/{{ product.url }}" alt="" />
